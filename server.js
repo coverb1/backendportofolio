@@ -9,8 +9,7 @@ const app= express()
 app.use(express.json())
 app.use(cors({credentials:true}))
 
-const MOONGES_URI='mongodb://localhost:27017/portfolioDB'
-mongoose.connect(MOONGES_URI).then(()=>{
+mongoose.connect(process.env.MONGODB_URI).then(()=>{
     console.log('database connected well')
 })
 
@@ -28,6 +27,9 @@ app.post('/contact',async(req,res)=>{
 const {name,email,message}=req.body
 if (!name || !email || !message) {
    return res.status(401).json({message:"please provide your email and password"}) 
+}
+if (!email.includes('@')) {
+    return res.status(401).json({message:"please write well email"})
 }
 try {
     const newcontact = new portfo({
