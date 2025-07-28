@@ -7,7 +7,10 @@ import dotenv from 'dotenv'
 dotenv.config()
 const app= express()
 app.use(express.json())
-app.use(cors({credentials:true}))
+app.use(cors({
+    origin:['mucyobruceportofolio.netlify.app'],
+    credentials:true
+}))
 
 mongoose.connect(process.env.MONGODB_URI).then(()=>{
     console.log('database connected well')
