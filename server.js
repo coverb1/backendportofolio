@@ -45,7 +45,7 @@ try {
     from:process.env.SENDER_EMAIL,
     to:email,
     subject:"thank you for texting us",
-    text:`hey sir/madam thank you for your time ${email} `
+    text:`${name} thank you for your time ${email} `
 }
 await transporter.sendMail(mailoption)
     return res.status(200).json({message: "thank you for texting us"})
